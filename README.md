@@ -3,7 +3,7 @@
 NOTE IMPORTANTE: J'ai essayé d'implémenter vers la fin du projet le hashage de mot de passe et cela a march d'un point de vue bd, mais du coup cela a fait bugé ma fonctionnalité connexion. Du coup le login bug à cause de cela. J'ai essayé jusqu'au dernier moment de debug, mais je n'ai malheureusement pas réussi.
 
 # Fonctionnalités
-Ce projet de sécrutié j'ai implémenté un formulaire ayant pour fonctionnalités :
+During this project I've implemented the following features:
 
 - Une connexion
 - Une deconnexion
@@ -14,8 +14,8 @@ Ce projet de sécrutié j'ai implémenté un formulaire ayant pour fonctionnalit
 
 - PDO prepare request
 - Tokenization
-- Hashage de mot de passe
-- Utilisation de DIR_NAME pour masquer le repertoir (On donne le moins d'infos possible)
+- Hash password
+- Utilisation de DIR_NAME to hide the architecture of the dir
 
 # Technologies:
 
