@@ -3,13 +3,14 @@
     include 'fonctions.php';
     
     #Si on recoit bien les paramètre du formulaire d'ajout alors on appelle la fonction d'ajout
-    print("ok: ".user_exists($_POST['user_name'], $_POST['user_password']));
+    #print("ok: ".user_exists($_POST['user_name'], $_POST['user_password']));
     try 
     {
         if( isset($_POST['user_name']) && $_POST['user_name']!="" && isset($_POST['user_password']) && $_POST['user_password']!="")
         {
             if (!user_exists($_POST['user_name'], $_POST['user_password']))
             {
+                print("enter");
                 session_start();
                 $_SESSION['user_name'] = $_POST['user_name'];
                 $_SESSION['user_password'] = $_POST['user_password'];

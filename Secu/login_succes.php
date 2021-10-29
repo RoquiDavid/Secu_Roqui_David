@@ -1,7 +1,7 @@
 <?php
     session_start();
     //Check if the user is loged
-    if(!isset($_SESSION["user_name"]) || $_SESSION["user_password"] !== true){
+    if(!isset($_SESSION["user_name"]) || !isset($_SESSION["user_password"])){
         header("location: index.php");
         exit;
     }
