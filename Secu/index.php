@@ -12,8 +12,9 @@
             {
                 print("enter");
                 session_start();
-                $_SESSION['user_name'] = $_POST['user_name'];
-                $_SESSION['user_password'] = $_POST['user_password'];
+                //On hash les valeurs des sessions
+                $_SESSION['user_name'] = encrypt_decrypt($_POST['user_name'], 'encrypt');
+                $_SESSION['user_password'] = encrypt_decrypt($_POST['user_password'], 'encrypt');
                 header("Location:login_succes.php");
             }
             else
@@ -32,6 +33,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
         <meta name="csrf-token" content = "<?php echo createToken();?>"/> 
         <!--On utilise ici dirname pour donner le moins d'info possible à l'user sur l'archi de site-->
         <link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']).'Css/style.css' ?>">
@@ -39,30 +41,32 @@
     </head>
 
     <body>
-        <img width="150" height="100" src="up8.jpg">
-        <form action="index.php" method="post">
-            <div>
-                <label for="name">Identifiant :</label>
-                <input type="text" id="Iden" name="user_name">
-            </div>
-            <div>
-                <label for="mail">Mot de passe :</label>
-                <input type="password" id="password" name="user_password">
-            </div>
 
-            <div class="button">
-                <button type="submit">OK</button>
-            </div>
+        <header>
+            <img width="150" height="100" src="up8.jpg">
+            <form action="index.php" method="post">
+                <div>
+                    <label for="name">Identifiant :</label>
+                    <input type="text" id="Iden" name="user_name">
+                </div>
+                <div>
+                    <label for="mail">Mot de passe :</label>
+                    <input type="password" id="password" name="user_password">
+                </div>
 
-            <div class="button">
-                <button type="submit">Reset</button>
-            </div>
-             
-        </form>
+                <div class="button">
+                    <button type="submit">OK</button>
+                </div>
 
-        <form action="Add_Form.php">
-            <input type="submit" value="Inscription" />
-        </form>
+                <div class="button">
+                    <button type="submit">Reset</button>
+                </div>
+            </form>
+
+            <form action="Add_Form.php">
+                <input type="submit" value="Inscription" />
+            </form>
+        </header>
         
 
 

@@ -1,0 +1,10 @@
+Modification effectuées:
+
+- Index.php : Hashage et cryptage des valeurs de session
+
+- Login_succes_php: decryptage de la valeur de session
+
+- Apache2 secury-conf: Ajout de Header set X-Content-Type-Options: "nosniff" 
+
+- Apache2 secury-conf: Ajout de Header set X-Frame-Options: "deny"
+

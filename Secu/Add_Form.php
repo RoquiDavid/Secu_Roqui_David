@@ -4,6 +4,7 @@
 <script type="text/javascript" src="script.js"></script>
 <?php
     require_once 'fonctions.php';
+    
 
     
     #Array for record of error codes
@@ -79,44 +80,45 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
         <title>Inscription</title>
     </head>
 
     <body>
+        <header>
+            <img width="150" height="100" src="up8.jpg">
+            <form action="Add_Form.php" method="post">
+                <div>
+                    <label for="name">Identifiant :</label>
+                    <input type="text" id="Iden" name="new_user_name">
+                </div>
+
+                <div>
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="new_user_password">
+                </div>
+
+                <div>
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="confirm-password" name="new_user_password_confirm">
+                </div>
+
+                <input type="hidden" name="csrf_token" id="hiddenField" value="<?php echo createToken();?>">
+
+                
+                <div class="button">
+                    <button type="submit">OK</button>
+                </div>
+
+                <div class="button">
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+            <form action="index.php">
+                <input type="submit" value="Acceuil" />
+            </form>
         
-        <img width="150" height="100" src="up8.jpg">
-        <form action="Add_Form.php" method="post">
-            <div>
-                <label for="name">Identifiant :</label>
-                <input type="text" id="Iden" name="new_user_name">
-            </div>
-
-            <div>
-                <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="new_user_password">
-            </div>
-
-            <div>
-                <label for="password">Mot de passe :</label>
-                <input type="password" id="confirm-password" name="new_user_password_confirm">
-            </div>
-
-            <input type="hidden" name="csrf_token" id="hiddenField" value="<?php echo createToken();?>">
-
-             
-            <div class="button">
-                <button type="submit">OK</button>
-            </div>
-
-            <div class="button">
-                <button type="reset">Reset</button>
-            </div>
-        </form>
-        <form action="index.php">
-            <input type="submit" value="Acceuil" />
-        </form>
-        
-
+        </header>
         
 
 

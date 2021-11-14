@@ -1,4 +1,5 @@
 <?php
+    
     function connect(){
         $host = 'localhost';
         $db   = 'secu';
@@ -9,7 +10,8 @@
             $pdo = new PDO('mysql:host=localhost;dbname=secu', $user, $pass);
             return $pdo;
         } catch (PDOException $e) {
-            print "Erreur !: " . $e->getMessage() . "<br/>";
+            //On desactive si on deploi l application pour ne pas donner d info sur les erreurs
+            //print "Erreur !: " . $e->getMessage() . "<br/>";
             die();
         }
     }
