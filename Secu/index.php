@@ -8,18 +8,34 @@
     {
         if( isset($_POST['user_name']) && $_POST['user_name']!="" && isset($_POST['user_password']) && $_POST['user_password']!="")
         {
+
             if (!user_exists($_POST['user_name'], $_POST['user_password']))
             {
-                print("enter");
                 session_start();
+
+                //If the csrf token is not equal to the csrf token session's then it's a malicious request
+                //And we delete him
+                echo('Get token:');
+                echo($_GET["csrf_token"]);
+                echo('Session token:');
+                echo($_SESSION["csrf_token"]);
+                if ($_GET["csrf_token"] != $_SESSION["csrf_token"]) {
+                    // Reset token
+                    unset($_SESSION["csrf_token"]);
+                    die("CSRF token validation failed");
+                }
                 //On hash les valeurs des sessions
                 $_SESSION['user_name'] = encrypt_decrypt($_POST['user_name'], 'encrypt');
                 $_SESSION['user_password'] = encrypt_decrypt($_POST['user_password'], 'encrypt');
+
                 header("Location:login_succes.php");
             }
+
             else
             {
+
                 $message = '<label>Faux</label>'; 
+
             }
         }
 
@@ -31,41 +47,55 @@
 
 ?>
 <html>
+
+
     <head>
         <meta charset="utf-8" />
         <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
-        <meta name="csrf-token" content = "<?php echo createToken();?>"/> 
-        <!--On utilise ici dirname pour donner le moins d'info possible à l'user sur l'archi de site-->
-        <link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']).'Css/style.css' ?>">
+        <link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']).'Css/index/style.css' ?>">
+        <img src="<?php echo dirname($_SERVER['PHP_SELF']).'up8.jpg'?>"width="300" height="200">
+
         <title>Connection</title>
+
     </head>
 
     <body>
 
         <header>
-            <img width="150" height="100" src="up8.jpg">
+
+            
             <form action="index.php" method="post">
+
                 <div>
+
                     <label for="name">Identifiant :</label>
                     <input type="text" id="Iden" name="user_name">
+
                 </div>
                 <div>
+
                     <label for="mail">Mot de passe :</label>
                     <input type="password" id="password" name="user_password">
-                </div>
 
+                </div>
                 <div class="button">
+                    <input type="hidden" name="csrf_token" value="<?php echo generate_token();?>" />
                     <button type="submit">OK</button>
+
                 </div>
 
                 <div class="button">
-                    <button type="submit">Reset</button>
+                    <button type="reset">Reset</button>
                 </div>
+
             </form>
 
             <form action="Add_Form.php">
-                <input type="submit" value="Inscription" />
+                <input type="hidden" name="csrf_token" value="<?php echo generate_token();?>" />
+                <button type="submit">Inscription</button>
+
             </form>
+            
         </header>
         
 

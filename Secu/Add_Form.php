@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']).'Css/style.css' ?>">
-<script type="text/javascript" src="script.js"></script>
+
 <?php
     require_once 'fonctions.php';
-    
 
-    
     #Array for record of error codes
     $errors = [];
     #If the user name and the password are not empty we continue
@@ -53,33 +50,32 @@
 
             #Check if we have errors
             if($errors[0]==""){
-                #Check the token
-                if(isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])){
-                    #If the user doesn't exists we can and
-                    $req = add_user($_POST['new_user_name'], $_POST['new_user_password']);
-                    #Check if the request has ended succesfully
-                    if($req != -1){
-                        $result[] = 1;
-                    }else{
-                        $result[] = 0;
-                    }      
-                    if($result){
-                        echo '<script type="text/javascript">
-                            alert("Ajout Ok");
-                            </script>';
-                    }
+                
+                #If the user doesn't exists we can and
+                $req = add_user($_POST['new_user_name'], $_POST['new_user_password']);
+                #Check if the request has ended succesfully
+                if($req != -1){
+                    $result[] = 1;
+                }else{
+                    $result[] = 0;
+                }      
+                if($result){
+                    echo '<script type="text/javascript">
+                        alert("Ajout Ok");
+                        </script>';
+                        header("Location:login_succes.php");
                 }
+                
             }
         }
-       
     }
     
-     
 ?>
 
 <html>
     <head>
-        <meta charset="utf-8" />
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']).'Css/index/style.css' ?>">
         <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
         <title>Inscription</title>
     </head>
@@ -115,8 +111,10 @@
                 </div>
             </form>
             <form action="index.php">
+                <input type="hidden" name="csrf_token" value="<?php echo generate_token();?>" />
                 <input type="submit" value="Acceuil" />
             </form>
+            
         
         </header>
         

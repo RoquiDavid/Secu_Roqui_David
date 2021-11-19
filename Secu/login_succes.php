@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']).'Css/style.css' ?>">
+<link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']).'Css/index/style.css' ?>">
 <script type="text/javascript" src="script.js"></script>
 
 <html>
