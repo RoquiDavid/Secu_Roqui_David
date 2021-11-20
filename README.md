@@ -14,6 +14,8 @@ During this project I've implemented the following features:
 - Tokenization
 - Hash password
 - Utilisation de DIR_NAME to hide the architecture of the dir
+- Frame-X-Option nosniff
+- Hide error message when php exception in connection
 
 # Technologies:
 
